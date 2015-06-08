@@ -8,22 +8,22 @@ public class Player {
     private boolean gender;
 
     public Player(String s, int a, boolean g) {
-	sport = s;
-	age = a;
-	gender = g;
+	     sport = s;
+	     age = a;
+	     gender = g;
     }
 
     public String getSport() {
-	return sport;
+      return sport;
     }
 
     public int getAge() {
-	return age;
+      return age;
     }
 
     public boolean getGender() {
-	return gender;
+      return gender;
     }
 
-    
+
 }
