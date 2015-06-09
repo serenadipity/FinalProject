@@ -8,8 +8,8 @@ Player player; // bird
 PVector velocity; // bird velocity
 
 float gravity;
-float gravity_normal = 0.05; // usual gravity 
-float gravity_boost = 0.25; // gravity boost
+float gravity_normal = 0.07; // usual gravity 
+float gravity_boost = 0.75; // gravity boost
 float damping = 0.03; // damping
 
 float a1, w1, ph1; //sinusoids
@@ -26,7 +26,7 @@ void setup()
   smooth();
   
   // initialize bird
-  player = new Player(100, 0, 10);
+  player = new Player(100, 0, 20);
   velocity = new PVector(1.5, 0);
   
   // set sinusoids
@@ -46,7 +46,7 @@ void setup()
 void draw()
 {
   // draw background
-  background(256, 200 + 0.5*(surf(player.x)-player.y), 20 - 0.5*(surf(player.x)-player.y));
+  background(0, 0, 0);
   
   // Zoom in and out effect:
   // Calculate scale factor which depends on 
