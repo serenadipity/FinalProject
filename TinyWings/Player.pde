@@ -1,11 +1,11 @@
-class Orb{
+class Player{
   float x, y, r;
 
   // Default constructor
-  Orb() {
+  Player() {
   }
 
-  Orb(float x, float y, float r) {
+  Player(float x, float y, float r) {
     this.x = x;
     this.y = y;
     this.r = r;

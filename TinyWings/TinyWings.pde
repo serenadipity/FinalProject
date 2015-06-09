@@ -1,17 +1,10 @@
-/* OpenProcessing Tweak of *@*http://www.openprocessing.org/sketch/28711*@* */
-/* !do not delete the line above, required for linking your tweak if you upload again */
-// simple Tiny Wings-like game using Reflections2 example
-// http://itunes.apple.com/ru/app/tiny-wings/id417817520
-// http://processing.org/learning/topics/reflection2.html
-
-// press any key to boost gravity 
 
 
-int wdth = 500; // dimensions of screen
-int hght = 500;
-int Nsegm = 500; // number of segments for surface rendering
+int WIDTH = 500; // dimensions of screen
+int HEIGHT = 500;
+int SEGMENTS = 500; // number of segments for surface rendering
 
-Orb orb; // bird
+Player player; // bird
 PVector velocity; // bird velocity
 
 float gravity;
@@ -29,11 +22,11 @@ float s; // scale factor
 void setup()
 {
   // set screen dimensions
-  size(wdth, hght);  
+  size(WIDTH, HEIGHT);  
   smooth();
   
   // initialize bird
-  orb = new Orb(100, 0, 10);
+  player = new Player(100, 0, 10);
   velocity = new PVector(1.5, 0);
   
   // set sinusoids
@@ -53,7 +46,7 @@ void setup()
 void draw()
 {
   // draw background
-  background(256, 200 + 0.5*(surf(orb.x)-orb.y), 20 - 0.5*(surf(orb.x)-orb.y));
+  background(256, 200 + 0.5*(surf(player.x)-player.y), 20 - 0.5*(surf(player.x)-player.y));
   
   // Zoom in and out effect:
   // Calculate scale factor which depends on 
@@ -62,7 +55,7 @@ void draw()
   // make scaking relatively smooth
   // http://en.wikipedia.org/wiki/Fermi-Dirac_statistics
   float kT = 150;
-  s = 0.1 + 1/(1  + exp( abs(orb.y + orb.r - surf(orb.x))/kT ) );
+  s = 0.1 + 1/(1  + exp( abs(player.y + player.r - surf(player.x))/kT ) );
   
   // initiate scaling
   scale(s);
@@ -73,16 +66,16 @@ void draw()
   // around. To avoid numerical problems when
   // calculating sinusoids from large argument
   // we do phase shift instead. 
-  if( orb.x>width )
+  if( player.x>width )
   {
     ph1 = (ph1 + 2*PI * w1)%(2*PI); // phase gain (remainder of 2PI)
     ph2 = (ph2 + 2*PI * w2)%(2*PI);
     ph3 = (ph3 + 2*PI * w3)%(2*PI);
-    orb.x = orb.x - width; // reset bird position
+    player.x = player.x - width; // reset bird position
     offset = offset + decline*width; // adjust vertical offset of the surface
   }
   // put bird to the center
-  translate(width/2/s - orb.x, height/2/s - orb.y); // note scale factor
+  translate(width/2/s - player.x, height/2/s - player.y); // note scale factor
   
   // if any key is pressed induce gravity boost   
   if(keyPressed)
@@ -94,34 +87,34 @@ void draw()
     gravity = gravity_normal;
   }
   
-  // move orb
-  orb.x += velocity.x;
+  // move player
+  player.x += velocity.x;
   velocity.y += gravity;
-  orb.y += velocity.y;
+  player.y += velocity.y;
         
   // draw surface ( with scale factor )
   stroke(123, 123, 0);
   fill(10, 234, 150);  
-  float[] x = range(-width/2/s - 50 + orb.x, width/2/s + 50 + orb.x, Nsegm);
+  float[] x = range(-width/2/s - 50 + player.x, width/2/s + 50 + player.x, SEGMENTS);
   beginShape();
-  vertex( -width/2/s - 50 + orb.x, height/2/s + orb.y + 50 );
+  vertex( -width/2/s - 50 + player.x, height/2/s + player.y + 50 );
   for( int j = 0; j<x.length; j++ )
   {
     vertex( x[j],  surf(x[j]) );    
   }
-  vertex( width/2/s + 10 + orb.x, height/2/s + orb.y + 10 );
+  vertex( width/2/s + 10 + player.x, height/2/s + player.y + 10 );
   endShape();
   
-  // Draw orb 
+  // Draw player 
   noStroke();
   fill(45, 10, 200);
-  if( orb.r >= 1)
+  if( player.r >= 1)
   {
-    ellipse(orb.x, orb.y, orb.r*2, orb.r*2); //(orb.r is already scaled)
+    ellipse(player.x, player.y, player.r*2, player.r*2); //(player.r is already scaled)
   }
   else // prevent from bird beeing too small
   {
-    ellipse(orb.x, orb.y, 2, 2);
+    ellipse(player.x, player.y, 2, 2);
   }
    
   // Check collision
@@ -143,11 +136,11 @@ float surf(float x)
 }
 
 // Evenly spaced points 
-float[] range(float xs, float xf, int Nsegm_)
+float[] range(float xs, float xf, int SEGMENTS_)
 {
-   float dx = (xf - xs)/Nsegm_;
-   float[] x = new float[Nsegm_+1];
-   for( int j = 0; j<Nsegm_+1; j++ )
+   float dx = (xf - xs)/SEGMENTS_;
+   float[] x = new float[SEGMENTS_+1];
+   for( int j = 0; j<SEGMENTS_+1; j++ )
    {
      x[j] = xs + j*dx; 
    }   
@@ -159,10 +152,10 @@ float[] range(float xs, float xf, int Nsegm_)
 // http://processing.org/learning/topics/reflection2.html
 void checkSurfCollision()
 {
-  if( orb.y + orb.y > surf( orb.x ) )
+  if( player.y + player.y > surf( player.x ) )
   {
     // linear approximation of the surface element
-    Ground g = new Ground( orb.x - 1, surf(orb.x-1), orb.x + 1, surf( orb.x + 1) );
+    Ground g = new Ground( player.x - 1, surf(player.x-1), player.x + 1, surf( player.x + 1) );
     // check for collisions with linear segment
     checkGroundCollision(g);    
   } 
@@ -172,9 +165,9 @@ void checkSurfCollision()
 // http://processing.org/learning/topics/reflection2.html
 void checkGroundCollision(Ground groundSegment) {
 
-  // Get difference between orb and ground
-  float deltaX = orb.x - groundSegment.x;
-  float deltaY = orb.y - groundSegment.y;
+  // Get difference between player and ground
+  float deltaX = player.x - groundSegment.x;
+  float deltaY = player.y - groundSegment.y;
 
   // Precalculate trig values
   float cosine = cos(groundSegment.rot);
@@ -188,14 +181,14 @@ void checkGroundCollision(Ground groundSegment) {
   float velocityYTemp = cosine * velocity.y - sine * velocity.x;
 
   /* Ground collision - check for surface 
-   collision and also that orb is within 
+   collision and also that player is within 
    left/rights bounds of ground segment */
-  if (groundYTemp > -orb.r &&
-    orb.x > groundSegment.x1 &&
-    orb.x < groundSegment.x2 ){
-    // keep orb from going into ground
-    groundYTemp = -orb.r;
-    // bounce and slow down orb
+  if (groundYTemp > -player.r &&
+    player.x > groundSegment.x1 &&
+    player.x < groundSegment.x2 ){
+    // keep player from going into ground
+    groundYTemp = -player.r;
+    // bounce and slow down player
     velocityYTemp *= -1.0;
     velocityYTemp *= damping;
     
@@ -205,13 +198,13 @@ void checkGroundCollision(Ground groundSegment) {
     }
   }
 
-  // Reset ground, velocity and orb
+  // Reset ground, velocity and player
   deltaX = cosine * groundXTemp - sine * groundYTemp;
   deltaY = cosine * groundYTemp + sine * groundXTemp;
   velocity.x = cosine * velocityXTemp - sine * velocityYTemp;
   velocity.y = cosine * velocityYTemp + sine * velocityXTemp;
-  orb.x = groundSegment.x + deltaX;
-  orb.y = groundSegment.y + deltaY;
+  player.x = groundSegment.x + deltaX;
+  player.y = groundSegment.y + deltaY;
 }
 
 
