@@ -94,7 +94,7 @@ void draw()
         
   // draw surface ( with scale factor )
   stroke(123, 123, 0);
-  fill(10, 234, 150);  
+  fill(233, 233, 233);
   float[] x = range(-width/2/s - 50 + player.x, width/2/s + 50 + player.x, SEGMENTS);
   beginShape();
   vertex( -width/2/s - 50 + player.x, height/2/s + player.y + 50 );
@@ -107,7 +107,7 @@ void draw()
   
   // Draw player 
   noStroke();
-  fill(45, 10, 200);
+  fill(51, 255, 51);
   if( player.r >= 1)
   {
     ellipse(player.x, player.y, player.r*2, player.r*2); //(player.r is already scaled)
