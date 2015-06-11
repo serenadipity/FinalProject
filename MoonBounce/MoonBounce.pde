@@ -12,7 +12,6 @@ float period = 500.0;  // How many pixels before the wave repeats
 float dx;  // Value for incrementing X, a function of period and xspacing
 float[] yvalues;  // Using an array to store height values for the wave
 
-
 void setup() {
   size(640,360)  ;
   player = new Player(100,0,20);
@@ -37,14 +36,19 @@ void calcWave() {
   // For every x value, calculate a y value with sine function
   float x = theta;
   for (int i = 0; i < yvalues.length; i++) {
-    yvalues[i] = sin(x)*amplitude*(float)(Math.random());
+    /*
+    if (x % 10 < 1){
+      amplitude = (float)Math.random() * 100;
+    }
+    */
+    yvalues[i] = sin(x)*amplitude;
     x+=dx;
   }
 }
 
 void renderWave() {
   noStroke();
-  fill(255);
+  fill(0,255,255);
   // A simple way to draw the wave with an ellipse at each location
   for (int x = 0; x < yvalues.length; x++) {
     rect(x*xspacing, height/2+yvalues[x], 15, 25);
