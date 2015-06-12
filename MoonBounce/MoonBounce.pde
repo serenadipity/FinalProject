@@ -5,6 +5,7 @@ float gravity;
 
 int xspacing = 1;   // How far apart should each horizontal location be spaced
 int w;              // Width of entire wave
+int time;
 
 float theta = 0.0;  // Start angle at 0
 float amplitude = 75.0;  // Height of wave
@@ -20,6 +21,7 @@ void setup() {
   w = width+16;
   dx = (TWO_PI / period) * xspacing;
   yvalues = new float[w/xspacing];
+  time = millis();
 }
 
 void draw() {
@@ -35,14 +37,22 @@ void calcWave() {
 
   // For every x value, calculate a y value with sine function
   float x = theta;
+  float w = 8*PI;
+  int phi = 0;
+  time = millis();
   for (int i = 0; i < yvalues.length; i++) {
+    yvalues[i] = amplitude*sin(w*time+phi);
+    //http://www.mathworks.com/matlabcentral/answers/161625-sine-wave-changing-amplitude
+    
     /*
     if (x % 10 < 1){
-      amplitude = (float)Math.random() * 100;
+      amplitude = (float)Math.random() * 50;
+      delay(2);
     }
-    */
+    
     yvalues[i] = sin(x)*amplitude;
     x+=dx;
+    */
   }
 }
 
