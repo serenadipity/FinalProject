@@ -39,9 +39,14 @@ void calcWave() {
   float x = theta;
   float w = 8*PI;
   int phi = 0;
-  time = millis();
   for (int i = 0; i < yvalues.length; i++) {
-    yvalues[i] = amplitude*sin(w*time+phi);
+    time = millis();
+    //yvalues[i] = amplitude*sin(w*time+phi);
+    yvalues[i] = amplitude*sin(x);
+    if (millis()%70 == 1) {amplitude +=.1;}
+    if (millis()%70== 2) {amplitude -=.1;}
+    if (amplitude > 75) {amplitude -= 50;}
+    x+=dx;
     //http://www.mathworks.com/matlabcentral/answers/161625-sine-wave-changing-amplitude
     
     /*
@@ -52,7 +57,7 @@ void calcWave() {
     
     yvalues[i] = sin(x)*amplitude;
     x+=dx;
-    */
+   */
   }
 }
 
