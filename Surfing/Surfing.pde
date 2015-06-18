@@ -21,7 +21,7 @@ void setup() {
   w = width+16;
   dx = (TWO_PI / period) * xspacing;
   yvalues = new float[w/xspacing];
-  time = millis();
+  
 }
 
 void draw() {
@@ -33,32 +33,21 @@ void draw() {
 void calcWave() {
   // Increment theta (try different values for 'angular velocity' here
   theta += 0.02;
-
+  
 
   // For every x value, calculate a y value with sine function
   float x = theta;
   float w = 8*PI;
   int phi = 0;
   for (int i = 0; i < yvalues.length; i++) {
-    time = millis();
-    //yvalues[i] = amplitude*sin(w*time+phi);
+    
     yvalues[i] = amplitude*sin(x);
-    if (millis()%70 == 1) {amplitude +=.1;}
-    if (millis()%70== 2) {amplitude -=.1;}
-    if (amplitude > 75) {amplitude -= 50;}
-    x+=dx;
-    //http://www.mathworks.com/matlabcentral/answers/161625-sine-wave-changing-amplitude
     
-    /*
-    if (x % 10 < 1){
-      amplitude = (float)Math.random() * 50;
-      delay(2);
-    }
     
-    yvalues[i] = sin(x)*amplitude;
     x+=dx;
-   */
+   
   }
+  
 }
 
 void renderWave() {
