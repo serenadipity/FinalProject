@@ -1,6 +1,0 @@
-class Cars{
-  
-  Cars() {
-  }
-  
-}
