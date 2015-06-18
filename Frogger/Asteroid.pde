@@ -11,11 +11,11 @@ class Asteroid {
     Width = w;
     Height = h;
     asteroid = loadImage("asteroid.png");
-    asteroid.resize(50,50);
+    asteroid.resize((int)w,(int)h);
   }
   
   void display() {
-    image(asteroid, 0, 0); 
+    image(asteroid, xpos, ypos); 
   }
   
   void move() {
@@ -27,3 +27,5 @@ class Asteroid {
   
   
 }
+
+

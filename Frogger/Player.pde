@@ -2,6 +2,7 @@ class Player {
   
   PImage rocket;
   float xcor, ycor; //coordinates
+  float Height, Width;
   int tileSize;
   
   //Default constructor
@@ -9,9 +10,11 @@ class Player {
     tileSize = 1;
   }
   
-  Player(float x, float y) {
-    this.xcor = x;
-    this.ycor = y;
+  Player(float x, float y, float w, float h) {
+    xcor = x;
+    ycor = y;
+    Height = h;
+    Width = w;
     rocket = loadImage("rocket.png");
   }
   
