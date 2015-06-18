@@ -1,5 +1,6 @@
 class Player {
   
+  PImage rocket;
   float xcor, ycor; //coordinates
   int tileSize;
   
@@ -11,6 +12,11 @@ class Player {
   Player(float x, float y) {
     this.xcor = x;
     this.ycor = y;
+    rocket = loadImage("rocket.png");
+  }
+  
+  void display() {
+    image(rocket, xcor, ycor);
   }
   
   void movePlayer(int dx, int dy) {

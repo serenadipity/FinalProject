@@ -5,6 +5,7 @@ void setup() {
   size(500, 500);
   player = new Player();
   asteroid = new Asteroid(0,0,25,25);
+  player = new Player(100,100);
 }
 
 
@@ -16,4 +17,5 @@ void makeAsteroids(Asteroid a) {
 void draw() {
   background(47,47,79);
   makeAsteroids(asteroid);
+  player.display();
 }
