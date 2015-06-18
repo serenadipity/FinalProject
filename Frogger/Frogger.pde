@@ -10,7 +10,7 @@ void setup() {
 
 
 void makeAsteroids(Asteroid a) {
-  asteroid.display();
+  a.display();
 }
 
 void draw() {
