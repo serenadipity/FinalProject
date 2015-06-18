@@ -9,8 +9,8 @@ class Player {
   }
   
   Player(float x, float y) {
-    this.x = xcor;
-    this.y = ycor;
+    this.xcor = x;
+    this.ycor = y;
   }
   
   void movePlayer(int dx, int dy) {
