@@ -6,7 +6,7 @@ void setup() {
 }
 
 void draw() {
-  background(0);
+  background(47,47,79);
 }
 
 
