@@ -10,6 +10,7 @@ class Asteroid {
     ypos = y;
     Width = w;
     Height = h;
+    xspeed = w;
     asteroid = loadImage("asteroid.png");
     asteroid.resize((int)w,(int)h);
   }

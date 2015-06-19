@@ -4,7 +4,7 @@ Asteroid asteroid;
 void setup() {
   size(560, 560);
   player = new Player(0,0,60,60);
-  asteroid = new Asteroid(0,0,80,80);
+  asteroid = new Asteroid(0,0,60,60);
 }
 
 void makeAsteroids(Asteroid a) {
@@ -29,8 +29,19 @@ void keyPressed()
   }
 }
 
+void moveAsteroid() {
+  float xpos = asteroid.xpos;
+  float ypos = asteroid.ypos;
+  float xspeed = asteroid.xspeed;
+  xpos -= xspeed;
+  if ((xpos > width)||(xpos < 0)) {
+    xpos = width;
+  }
+  image("asteroid.png", xpos, ypos);
+}
 void draw() {
   background(47,47,79);
   makeAsteroids(asteroid);
   player.display();
+  
 }
