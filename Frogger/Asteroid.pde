@@ -15,8 +15,8 @@ class Asteroid {
     asteroid.resize((int)w,(int)h);
   }
   
-  void display() {
-    image(asteroid, xpos, ypos); 
+  void display(float x, float y) {
+    image(asteroid, x, y); 
   }
   
   

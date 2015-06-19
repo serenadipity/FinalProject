@@ -8,7 +8,13 @@ void setup() {
 }
 
 void makeAsteroids(Asteroid a) {
-  a.display();
+float x = moveAX(a.xpos);
+  a.xpos = x;
+  a.display(x,a.ypos);
+}
+
+float moveAX(float pos) {
+  return pos - 1;
 }
 
 void keyPressed()
@@ -29,24 +35,11 @@ void keyPressed()
   }
 }
 
-void moveAsteroid() {
-  float xpos = asteroid.xpos;
-  float ypos = asteroid.ypos;
-  float move = asteroid.tileSize;
-  xpos -= move;
-  if ((xpos > width)||(xpos < 0)) {
-    xpos = width;
-  }
-  //image("asteroid.png", xpos, ypos);
-}
-
-
 
 void draw() {
   background(47,47,79);
   makeAsteroids(asteroid);
   player.display();
-  moveAsteroid();
   if (player.collision(asteroid)) {
   text("game over", 10, 30);
   } 
