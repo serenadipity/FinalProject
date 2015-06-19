@@ -35,33 +35,33 @@ class Player {
       public void moveup()
     {
      if (ycor > tileSize) {
-       ycor -= tileSize;
+       ycor -= 100; //tileSize;
        }
      }
-     
+/*     
     public void movedown()
     {
       if (ycor < height - (tileSize * 1.5)) {
         ycor += tileSize;
       }
     }
-     
+*/     
     public void moveleft(float x)
     {
       if (xcor > x/2) {
-        xcor -= x;
+        xcor -= 100;//x;
       }
     }
      
     public void moveright()
     {
       if (xcor < width - (tileSize * 1.5)) {
-        xcor += tileSize;
+        xcor += 100;//tileSize;
       }
     }
     
   boolean collision(Asteroid a) {
-  if ((this.xcor < a.xpos+50 && this.xcor > a.xpos-50) && (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
+  if ((this.xcor < a.xpos+50 && this.xcor > a.xpos-50)) { //&& (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
     return true;
     
    }
