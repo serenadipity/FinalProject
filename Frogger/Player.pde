@@ -7,7 +7,7 @@ class Player {
   
   //Default constructor
   Player() {
-    tileSize = 80;
+    tileSize = 60;
   }
   
   Player(float x, float y, float w, float h) {
@@ -30,33 +30,18 @@ class Player {
       ycor += dy * tileSize;
       image(rocket, xcor, ycor);
   }
-  
- //fix moveup 
+ 
+ 
       public void moveup()
     {
      if (ycor > 0) {
        ycor -= tileSize;
-     //} else {
-       //if (test_lily_collision(x)) {
-         //if (++score == 5) {
-           //win();
-         //}
-         //xcor = 0;
-         //ycor = 640;
-       //} else {
-         //if (--lives == 0) {
-           //setup();
-         //} else {
-           //x = 0;
-           //y = 640;
-         //}
        }
      }
-    //}
      
     public void movedown()
     {
-      if (ycor < height - tileSize) {
+      if (ycor < height - (tileSize * 1.5)) {
         ycor += tileSize;
       }
     }
@@ -70,7 +55,7 @@ class Player {
      
     public void moveright()
     {
-      if (xcor < width - tileSize) {
+      if (xcor < width - (tileSize * 1.5)) {
         xcor += tileSize;
       }
     }

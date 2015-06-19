@@ -3,7 +3,7 @@ Asteroid asteroid;
 
 void setup() {
   size(560, 560);
-  player = new Player(0,0,80,80);
+  player = new Player(0,0,60,60);
   asteroid = new Asteroid(0,0,80,80);
 }
 
