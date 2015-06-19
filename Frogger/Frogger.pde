@@ -15,21 +15,21 @@ void setup() {
   dim = 60;
   player = new Player(width/2 - dim/2, width - dim,dim,dim);
   asteroid = new Asteroid(100,100,dim,dim);
-  asteroid2 = new Asteroid(100, 200, dim, dim);
+  asteroid2 = new Asteroid(150, 200, dim, dim);
   asteroid3 = new Asteroid(100, 300, dim, dim);
-  asteroid4 = new Asteroid(100, 400, dim, dim);
+  asteroid4 = new Asteroid(150, 400, dim, dim);
   asteroid5 = new Asteroid(200,100,dim,dim);
-  asteroid6 = new Asteroid(200, 200, dim, dim);
+  asteroid6 = new Asteroid(250, 200, dim, dim);
   asteroid7 = new Asteroid(200, 300, dim, dim);
-  asteroid8 = new Asteroid(200, 400, dim, dim);
+  asteroid8 = new Asteroid(250, 400, dim, dim);
   asteroid9 = new Asteroid(300,100,dim,dim);
-  asteroid10 = new Asteroid(300, 200, dim, dim);
+  asteroid10 = new Asteroid(350, 200, dim, dim);
   asteroid11 = new Asteroid(300, 300, dim, dim);
-  asteroid12 = new Asteroid(300, 400, dim, dim);
+  asteroid12 = new Asteroid(350, 400, dim, dim);
   asteroid13 = new Asteroid(400,100,dim,dim);
-  asteroid14 = new Asteroid(400, 200, dim, dim);
+  asteroid14 = new Asteroid(450, 200, dim, dim);
   asteroid15 = new Asteroid(400, 300, dim, dim);
-  asteroid16 = new Asteroid(400, 400, dim, dim);
+  asteroid16 = new Asteroid(450, 400, dim, dim);
   base1 = new Base("earth.png", 80, 450, 400, 400);
   base2 = new Base("mars.png", 80,-450,400,400);
   bg = loadImage("space.png");
@@ -94,4 +94,5 @@ void draw() {
     player.moveleft(0.5);
     attach();
   } 
+  player.win(base2);
 }

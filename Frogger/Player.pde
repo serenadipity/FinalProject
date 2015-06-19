@@ -68,6 +68,11 @@ class Player {
    else return false;
 }
 
+  void win(Base b) {
+    if ((this.xcor < b.xpos+200 && this.xcor > b.xpos-200) && (this.ycor < b.ypos+200 && this.xcor > b.ypos-200)) {
+      println("You Win!");
+    }
+  }
 
   /*
   void keyPressed() {

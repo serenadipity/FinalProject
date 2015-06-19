@@ -18,5 +18,6 @@ class Base {
     void display(float x, float y) {
     image(image, x, y);
     }
+    
   
 }
