@@ -11,8 +11,8 @@ void setup() {
   dim = 60;
   player = new Player(width/2 - dim/2, width - dim,dim,dim);
   asteroid = new Asteroid(300,150,dim,dim);
-  base1 = new Base("earth.png", -200, -200, 400, 400);
-  base2 = new Base("mars.png", 50,50,200,200);
+  base1 = new Base("earth.png", 80, 450, 400, 400);
+  base2 = new Base("mars.png", 80,-450,400,400);
   bg = loadImage("space.png");
   bg.resize(560,560);
 }
@@ -52,8 +52,8 @@ void attach(){
 
 void draw() {
   background(bg);
-  base1.display(-200,-200);
-  base2.display(100,100);
+  base1.display(80,450);
+  base2.display(80,-300);
   makeAsteroids(asteroid);
   player.display(player.xcor, player.ycor);
   if (player.collision(asteroid)) {
