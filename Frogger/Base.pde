@@ -15,4 +15,8 @@ class Base {
     image.resize((int)w,(int)h);
   }
   
+    void display(float x, float y) {
+    image(image, x, y);
+    }
+  
 }
