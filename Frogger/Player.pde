@@ -7,7 +7,7 @@ class Player {
   
   //Default constructor
   Player() {
-    tileSize = 1;
+    tileSize = 50;
   }
   
   Player(float x, float y, float w, float h) {
@@ -16,6 +16,8 @@ class Player {
     Height = h;
     Width = w;
     rocket = loadImage("rocket.png");
+    rocket.resize((int)w,(int)h);
+
   }
   
   void display() {
@@ -25,8 +27,54 @@ class Player {
   void movePlayer(int dx, int dy) {
       xcor += dx * tileSize;
       ycor += dy * tileSize;
+      image(rocket, xcor, ycor);
   }
-  
+ //fix moveup 
+      public void moveup()
+    {
+     if (y > -32) {
+       y -= 32;
+     } else {
+       if (test_lily_collision(x)) {
+         if (++score == 5) {
+           win();
+         }
+         x = 0;
+         y = 640;
+       } else {
+         if (--lives == 0) {
+           setup();
+         } else {
+           x = 0;
+           y = 640;
+         }
+       }
+     }
+    }
+     
+    public void movedown()
+    {
+      if (y < 640) {
+        y += 32;
+      }
+    }
+     
+    public void moveleft()
+    {
+      if (x > -192) {
+        x -= 16;
+      }
+    }
+     
+    public void moveright()
+    {
+      if (x < 192) {
+        x += 16;
+      }
+    }
+
+
+  /*
   void keyPressed() {
     if (key == CODED) {
       if(keyCode == UP) {
@@ -42,5 +90,5 @@ class Player {
       movePlayer(0, 0);
     }
   }
-      
+   */   
 }
