@@ -10,9 +10,13 @@ PImage mars;
 Base base1, base2;
 boolean isAttached;
 
+int savedTime;
+int totalTime;
+
 void setup() {
   size(560, 560);
   dim = 60;
+  savedTime = millis();
   player = new Player(width/2 - dim/2, width - dim,dim,dim);
   asteroid = new Asteroid(100,100,dim,dim);
   asteroid2 = new Asteroid(150, 200, dim, dim);
@@ -70,6 +74,10 @@ void attach(){
 }
 
 void draw() {
+  int passedTime = millis() - savedTime;
+  if (passedTime > totalTime) {
+    text(passedTime, 20,20);
+  }
   background(bg);
   base1.display(80,450);
   base2.display(80,-300);
