@@ -49,7 +49,7 @@ float x = moveAX(a.xpos, vel, vel2);
 }
 
 float moveAX(float pos, float vel, float vel2) {
-
+//working back and forth but all simultaneously
   if (pos < 25) {
     bound2 = true;
     bound1 = false;
