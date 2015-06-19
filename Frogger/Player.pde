@@ -61,7 +61,7 @@ class Player {
     }
     
   boolean collision(Asteroid a) {
-  if ((this.xcor < a.xpos+50 && this.xcor > a.xpos-50)) { //&& (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
+  if ((this.xcor < a.xpos+22 && this.xcor > a.xpos-22)) { //&& (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
     return true;
     
    }
@@ -69,10 +69,12 @@ class Player {
 }
 
   void win(Base b) {
-    if ((this.xcor < b.xpos+200 && this.xcor > b.xpos-200) && (this.ycor < b.ypos+200 && this.xcor > b.ypos-200)) {
-      println("You Win!");
+    //if ((this.xcor < b.xpos+200 && this.xcor > b.xpos-200) && (this.ycor < b.ypos+200 && this.xcor > b.ypos-200)) {
+      if (player.ycor < 100) {
+      text("You Win!", 100, 100);
     }
   }
+  
 
 
 }

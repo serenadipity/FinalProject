@@ -28,14 +28,12 @@ void setup() {
   asteroid6 = new Asteroid(250, 300, dim, dim);
   asteroid7 = new Asteroid(350, 300, dim, dim);
   asteroid8 = new Asteroid(450, 300, dim, dim);
-  asteroid9 = new Asteroid(100, 200,dim,dim);
-  asteroid10 = new Asteroid(200, 200, dim, dim);
-  asteroid11 = new Asteroid(300, 200, dim, dim);
-  asteroid12 = new Asteroid(400, 200, dim, dim);
+  asteroid9 = new Asteroid(120, 200,dim,dim);
+  asteroid10 = new Asteroid(220, 200, dim, dim);
+  asteroid11 = new Asteroid(320, 200, dim, dim);
+  asteroid12 = new Asteroid(420, 200, dim, dim);
   asteroid13 = new Asteroid(150, 100,dim,dim);
   asteroid14 = new Asteroid(250, 100, dim, dim);
-  asteroid15 = new Asteroid(350, 100, dim, dim);
-  asteroid16 = new Asteroid(450, 100, dim, dim);
   base1 = new Base("earth.png", 80, 450, 400, 400);
   base2 = new Base("mars.png", 80,-450,400,400);
   bg = loadImage("space.png");
@@ -68,7 +66,9 @@ float moveAX(float pos, float vel, float vel2) {
 }
 
   
-
+void die() {
+  setup();
+}
   
 
 void keyPressed()
@@ -91,11 +91,15 @@ void keyPressed()
 
 void attach(Asteroid a){
     float k = player.xcor - a.xpos;
-    if (k <= 30) {
+    if (k <= 20) {
       player.xcor = a.xpos;
     } 
-    //else {}//dead
-      
+    else {
+      die();
+      text("You Lose. Try again!", 50,50);
+      delay(5);
+      //die();
+    }
 }
  
 
