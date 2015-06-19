@@ -1,12 +1,15 @@
 Player player;
 Asteroid asteroid;
 float dim;
+PImage bg;
 
 void setup() {
   size(560, 560);
   dim = 60;
   player = new Player(width/2 - dim/2, width - dim,dim,dim);
   asteroid = new Asteroid(300,150,dim,dim);
+  bg = loadImage("space.png");
+  bg.resize(560,560);
 }
 
 void makeAsteroids(Asteroid a) {
@@ -43,7 +46,7 @@ void attach(){
 }
 
 void draw() {
-  background(47,47,79);
+  background(bg);
   makeAsteroids(asteroid);
   player.display(player.xcor, player.ycor);
   if (player.collision(asteroid)) {
