@@ -15,7 +15,7 @@ class Player {
     ycor = y;
     Height = h;
     Width = w;
-    tileSize = 80;
+    tileSize = w;
     rocket = loadImage("rocket.png");
     rocket.resize((int)w,(int)h);
 
