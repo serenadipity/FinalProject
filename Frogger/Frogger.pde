@@ -2,8 +2,8 @@ Player player;
 Asteroid asteroid;
 
 void setup() {
-  size(500, 500);
-  player = new Player(100,100,80,80);
+  size(560, 560);
+  player = new Player(0,0,80,80);
   asteroid = new Asteroid(0,0,80,80);
 }
 

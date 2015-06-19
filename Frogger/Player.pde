@@ -3,11 +3,11 @@ class Player {
   PImage rocket;
   float xcor, ycor; //coordinates
   float Height, Width;
-  int tileSize;
+  float tileSize;
   
   //Default constructor
   Player() {
-    tileSize = 50;
+    tileSize = 80;
   }
   
   Player(float x, float y, float w, float h) {
@@ -15,6 +15,7 @@ class Player {
     ycor = y;
     Height = h;
     Width = w;
+    tileSize = 80;
     rocket = loadImage("rocket.png");
     rocket.resize((int)w,(int)h);
 
@@ -33,8 +34,8 @@ class Player {
  //fix moveup 
       public void moveup()
     {
-     if (ycor > -10) {
-       ycor -= 32;
+     if (ycor > 0) {
+       ycor -= tileSize;
      //} else {
        //if (test_lily_collision(x)) {
          //if (++score == 5) {
@@ -55,22 +56,22 @@ class Player {
      
     public void movedown()
     {
-      if (ycor < 400) {
-        ycor += 32;
+      if (ycor < height - tileSize) {
+        ycor += tileSize;
       }
     }
      
     public void moveleft()
     {
-      if (xcor > -12) {
-        xcor -= 16;
+      if (xcor > 0) {
+        xcor -= tileSize;
       }
     }
      
     public void moveright()
     {
-      if (xcor < 425) {
-        xcor += 16;
+      if (xcor < width - tileSize) {
+        xcor += tileSize;
       }
     }
 
