@@ -34,7 +34,7 @@ class Player {
  
       public void moveup()
     {
-     if (ycor > 0) {
+     if (ycor > tileSize) {
        ycor -= tileSize;
        }
      }
@@ -48,7 +48,7 @@ class Player {
      
     public void moveleft()
     {
-      if (xcor > 0) {
+      if (xcor > tileSize/2) {
         xcor -= tileSize;
       }
     }

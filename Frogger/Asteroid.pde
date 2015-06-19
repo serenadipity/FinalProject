@@ -3,14 +3,14 @@ class Asteroid {
   PImage asteroid;
   float xpos, ypos;
   float Height, Width; 
-  float xspeed;
+  float tileSize;
   
   Asteroid(float x, float y, float w, float h) {
     xpos = x;
     ypos = y;
     Width = w;
     Height = h;
-    xspeed = w;
+    tileSize = w;
     asteroid = loadImage("asteroid.png");
     asteroid.resize((int)w,(int)h);
   }
@@ -19,13 +19,40 @@ class Asteroid {
     image(asteroid, xpos, ypos); 
   }
   
-  void move() {
-    xpos = xpos + xspeed;
-    if (xpos > width) {
-      xpos = 0;
-    } 
-  }
   
+ 
+ 
+      public void moveup()
+    {
+     if (ypos > 0) {
+       ypos -= tileSize;
+       }
+     }
+     
+    public void movedown()
+    {
+      if (ypos < height - (tileSize * 1.5)) {
+        ypos += tileSize;
+      }
+    }
+     
+    public void moveleft()
+    {
+      if (xpos > 0) {
+        xpos -= tileSize;
+      }
+    }
+     
+    public void moveright()
+    {
+      if (xpos < width - (tileSize * 1.5)) {
+        xpos += tileSize;
+      }
+    }
+
+
+
+
   /*
     public boolean test_collision(int frog_x)
   {

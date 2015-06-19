@@ -3,8 +3,8 @@ Asteroid asteroid;
 
 void setup() {
   size(560, 560);
-  player = new Player(0,0,60,60);
-  asteroid = new Asteroid(0,0,60,60);
+  player = new Player(width/2 - 60/2, width - 60,60,60);
+  asteroid = new Asteroid(400,0,60,60);
 }
 
 void makeAsteroids(Asteroid a) {
@@ -32,16 +32,17 @@ void keyPressed()
 void moveAsteroid() {
   float xpos = asteroid.xpos;
   float ypos = asteroid.ypos;
-  float xspeed = asteroid.xspeed;
-  xpos -= xspeed;
+  float move = asteroid.tileSize;
+  xpos -= move;
   if ((xpos > width)||(xpos < 0)) {
     xpos = width;
   }
-  image("asteroid.png", xpos, ypos);
+  //image("asteroid.png", xpos, ypos);
 }
 void draw() {
   background(47,47,79);
   makeAsteroids(asteroid);
   player.display();
+  moveAsteroid();
   
 }
