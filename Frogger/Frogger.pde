@@ -8,7 +8,7 @@ PImage bg;
 PImage earth;
 PImage mars;
 Base base1, base2;
-boolean isAttached;
+boolean bound1, bound2;
 
 int savedTime;
 int totalTime;
@@ -16,6 +16,8 @@ int totalTime;
 void setup() {
   size(560, 560);
   dim = 60;
+  bound2 = false;
+  bound1 = true;
   savedTime = millis();
   player = new Player(width/2 - dim/2, width - dim,dim,dim);
   asteroid = new Asteroid(100,400,dim,dim);
@@ -40,15 +42,34 @@ void setup() {
   bg.resize(560,560);
 }
 
-void makeAsteroids(Asteroid a, float vel) {
-float x = moveAX(a.xpos, vel);
+void makeAsteroids(Asteroid a, float vel, float vel2) {
+float x = moveAX(a.xpos, vel, vel2);
   a.xpos = x;
   a.display(x,a.ypos);
 }
 
-float moveAX(float pos, float vel) {
-  return pos - vel;
+float moveAX(float pos, float vel, float vel2) {
+
+  if (pos < 25) {
+    bound2 = true;
+    bound1 = false;
+  }
+  if (pos > 535) {
+    bound1 = true;
+    bound2 = false;
+  }
+  
+  if (bound1) {
+    return pos - vel;
+  }
+  else {
+    return pos - vel2;
+  }
 }
+
+  
+
+  
 
 void keyPressed()
 {
@@ -93,20 +114,20 @@ void draw() {
   background(bg);
   base1.display(80,450);
   base2.display(80,-300);
-  makeAsteroids(asteroid, 0.5);
-  makeAsteroids(asteroid2, 0.5);
-  makeAsteroids(asteroid3, 0.5);
-  makeAsteroids(asteroid4, 0.5);
-  makeAsteroids(asteroid5, 1);
-  makeAsteroids(asteroid6, 1);
-  makeAsteroids(asteroid7, 1);
-  makeAsteroids(asteroid8, 1);
-  makeAsteroids(asteroid9, 0.75);
-  makeAsteroids(asteroid10, 0.75);
-  makeAsteroids(asteroid11, 0.75);
-  makeAsteroids(asteroid12, 0.75);
-  makeAsteroids(asteroid13, 1.5);
-  makeAsteroids(asteroid14, 1.5);
+  makeAsteroids(asteroid, 0.5, -0.5);
+  makeAsteroids(asteroid2, 0.5, -0.5);
+  makeAsteroids(asteroid3, 0.5, -0.5);
+  makeAsteroids(asteroid4, 0.5, -0.5);
+  makeAsteroids(asteroid5, 1, -1);
+  makeAsteroids(asteroid6, 1, -1);
+  makeAsteroids(asteroid7, 1, -1);
+  makeAsteroids(asteroid8, 1, -1);
+  makeAsteroids(asteroid9, 0.75, -0.75);
+  makeAsteroids(asteroid10, 0.75, -0.75);
+  makeAsteroids(asteroid11, 0.75, -0.75);
+  makeAsteroids(asteroid12, 0.75, -0.75);
+  makeAsteroids(asteroid13, 1.5, -1.5);
+  makeAsteroids(asteroid14, 1.5, -1.5);
   player.display(player.xcor, player.ycor);
   
   if (player.ycor == 400) {
