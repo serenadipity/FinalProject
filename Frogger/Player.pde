@@ -21,8 +21,8 @@ class Player {
 
   }
   
-  void display() {
-    image(rocket, xcor, ycor);
+  void display(float x, float y) {
+    image(rocket, x, y);
   }
   
   void movePlayer(int dx, int dy) {
@@ -46,10 +46,10 @@ class Player {
       }
     }
      
-    public void moveleft()
+    public void moveleft(float x)
     {
-      if (xcor > tileSize/2) {
-        xcor -= tileSize;
+      if (xcor > x/2) {
+        xcor -= x;
       }
     }
      
@@ -63,6 +63,7 @@ class Player {
   boolean collision(Asteroid a) {
   if ((this.xcor < a.xpos+50 && this.xcor > a.xpos-50) && (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
     return true;
+    
    }
    else return false;
 }
