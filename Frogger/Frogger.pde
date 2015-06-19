@@ -4,7 +4,7 @@ Asteroid asteroid;
 void setup() {
   size(560, 560);
   player = new Player(width/2 - 60/2, width - 60,60,60);
-  asteroid = new Asteroid(400,0,60,60);
+  asteroid = new Asteroid(300,150,60,60);
 }
 
 void makeAsteroids(Asteroid a) {
@@ -39,10 +39,15 @@ void moveAsteroid() {
   }
   //image("asteroid.png", xpos, ypos);
 }
+
+
+
 void draw() {
   background(47,47,79);
   makeAsteroids(asteroid);
   player.display();
   moveAsteroid();
-  
+  if (player.collision(asteroid)) {
+  text("game over", 10, 30);
+  } 
 }

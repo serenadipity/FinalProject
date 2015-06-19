@@ -59,7 +59,13 @@ class Player {
         xcor += tileSize;
       }
     }
-
+    
+  boolean collision(Asteroid a) {
+  if ((this.xcor < a.xpos+50 && this.xcor > a.xpos-50) && (this.ycor < a.ypos+50 && this.ycor > a.ypos-50)) {
+    return true;
+   }
+   else return false;
+}
 
 
   /*
